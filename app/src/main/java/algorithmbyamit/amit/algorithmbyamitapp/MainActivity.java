@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             for(int i=0;i<8;i++){
                 bttn[j][i] = new Button(this);
                 bttn[j][i].setLayoutParams (new LinearLayout.LayoutParams(100, LinearLayout.LayoutParams.WRAP_CONTENT));
-                bttn[j][i].setText(String.valueOf(mat[i][j]));
+                bttn[j][i].setText(String.valueOf(mat[j][i]));
                 bttn[j][i].setTextSize(TypedValue.COMPLEX_UNIT_PX, 40);
                 bttn[j][i].setTextColor(Color.parseColor("#a8a8a8"));
                 bttn[j][i].setBackgroundColor(Color.WHITE);
