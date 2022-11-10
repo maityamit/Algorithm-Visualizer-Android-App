@@ -3,84 +3,140 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#F4FAFF"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/buttonlayout"
-        android:orientation="horizontal">
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="25dp"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="#deffe7"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Visited Cell"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/background_dark"
-            android:layout_marginStart="15dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="#283593"
-            android:layout_marginStart="30dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="newColor"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/background_dark"
-            android:layout_marginStart="15dp"/>
-
-
-    </LinearLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:textSize="16sp"
-        android:text="In MS-Paint, when we take the brush to a pixel and click, the color of the region of that pixel is replaced with a new selected color. Following is the problem statement to do this task. "/>
+        android:textColor="@android:color/black"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20sp"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:text="Algo Visualizer"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="18sp"
+        android:layout_height="70dp"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="12dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <View
+                android:layout_width="3dp"
+                android:background="#0148A4"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sorting Algo"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#0148A4"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
 
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/purple_500"
-        android:layout_marginTop="10dp"
-        android:onClick="Start"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:text="Start"
-        android:textAllCaps="false"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="18sp"
+        android:layout_height="70dp"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="12dp">
+
+
+        <LinearLayout
+            android:id="@+id/main_graphs_algo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <View
+                android:layout_width="3dp"
+                android:background="#0148A4"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Graphs"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#0148A4"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="18sp"
+        android:alpha="0.8"
+        android:layout_height="70dp"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="12dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More Coming Soon !"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#C62828"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
 
 
 </LinearLayout>
