@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    private LinearLayout graphs;
+    private LinearLayout sorting,graphs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +27,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         graphs = findViewById(R.id.main_graphs_algo);
+        sorting = findViewById(R.id.sorting_algo_list);
         graphs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,GraphActivity.class);
                 startActivity(intent);
+            }
+        });
+        sorting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(MainActivity.this,SortingActivity.class);
+                startActivity(intent1);
             }
         });
 
