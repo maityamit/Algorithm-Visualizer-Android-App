@@ -8,16 +8,25 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class SortingPlayActivity extends AppCompatActivity {
 
-    Button[] bttn = new Button[8];
-    int[] arr = {5,3,7,8,1,12,9,5};
+    private LinearLayout linearLayout;
+    private int[] arr = {5, 1, 12, -5, 16, 2, 12, 14};
+    private int i = 0, j = 0,min_idx = 0;
+    private TextView textView;
+    private Button button;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,113 +34,97 @@ public class SortingPlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sorting_play);
 
 
-        for(int j=0;j<8;j++) {
-                bttn[j] = new Button(this);
-                bttn[j].setLayoutParams (new LinearLayout.LayoutParams(100, LinearLayout.LayoutParams.WRAP_CONTENT));
-                bttn[j].setText(String.valueOf(arr[j]));
-                bttn[j].setTextSize(TypedValue.COMPLEX_UNIT_PX, 40);
-                bttn[j].setTextColor(Color.parseColor("#a8a8a8"));
-                bttn[j].setBackgroundColor(Color.WHITE);
-        }
 
-        LinearLayout linear = (LinearLayout)findViewById(R.id.sorting_array_layout);
-        linear.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params2.gravity = Gravity.CENTER;
-        linear.setLayoutParams(params2);
+        linearLayout = findViewById(R.id.linearLayout);
+        textView = findViewById(R.id.textView);
 
+        button = findViewById(R.id.button);
 
-        for(int j=0;j<8;j++){
-            linear.addView(bttn[j]);
-        }
-
-        late(arr.length);
-
-
-    }
-
-    private void late(int n){
-        final Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                //Do something after
-                bubbleSort(n);
-
-
+            public void onClick(View view) {
+                bubbleSort();
             }
-        }, 1500);
+        });
+
+
+
+
     }
 
-    void bubbleSort(int n)
-    {
-        // Base case
-        if (n == 1)
-            return;
 
-        final int[] count = {0};
-        // One pass of bubble sort. After
-        // this pass, the largest element
-        // is moved (or bubbled) to end.
-        for (int i=0; i<n-1; i++) {
+    private void selection(){
+        if (i < arr.length - 1) {
+            if (j < arr.length - i - 1) {
+                min_idx = j;
+                for (int k = j + 1; k < arr.length; k++) {
+                    if (arr[k] < arr[min_idx]) {
+                        min_idx = k;
+                    }
+                }
+                int temp = arr[min_idx];
+                arr[min_idx] = arr[j];
+                arr[j] = temp;
+                j++;
+            } else {
+                i++;
+                j = i;
+            }
+            textView.setText(Arrays.toString(arr));
+            displayBars();
 
-            final Handler handler = new Handler(Looper.getMainLooper());
-            int finalI = i;
-            handler.postDelayed(new Runnable() {
+            new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    //Do something after
-                    bttn[finalI].setBackgroundColor(Color.parseColor("#deffe7"));
-
-
-                    if (arr[finalI] > arr[finalI + 1]) {
-
-                        // swap arr[i], arr[i+1]
-                        int temp = arr[finalI];
-                        bttn[finalI].setText(String.valueOf(arr[finalI + 1]));
-                        bttn[finalI].setTextColor(Color.parseColor("#FF283593"));
-                        arr[finalI] = arr[finalI + 1];
-                        arr[finalI + 1] = temp;
-                        bttn[finalI + 1].setText(String.valueOf(temp));
-                        bttn[finalI + 1].setTextColor(Color.parseColor("#FF283593"));
-
-                        count[0] = count[0] +1;
-
-                    }
-
+                    selection();
                 }
-            }, 1500);
-
-
-
+            }, 500); // 500 milliseconds delay
         }
-
-        // Check if any recursion happens or not
-        // If any recursion is not happen then return
-        if (count[0] == 0)
-            return;
-
-        // Largest element is fixed,
-        // recur for remaining array
-        late(n-1);
     }
 
-    private void swap() {
-
-        int cnt = 0;
-
-        final Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //Do something after
-
-
+    private void bubbleSort() {
+        if (j < arr.length - i - 1) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
             }
-        }, 1500);
-
-
-
+            j++;
+            displayBars();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bubbleSort();
+                }
+            }, 500);
+        } else {
+            j = 0;
+            i++;
+            if (i < arr.length) {
+                bubbleSort();
+            } else {
+                button.setEnabled(false);
+            }
+        }
     }
+
+    private void displayBars() {
+        linearLayout.removeAllViews();
+        for (int k = 0; k < arr.length; k++) {
+            TextView textView = new TextView(this);
+            textView.setText(arr[k] + "");
+            textView.setTextSize(20);
+            textView.setPadding(10, 10, 10, 10);
+            if (k == j || k == j + 1) {
+                textView.setBackgroundColor(Color.YELLOW);
+            } else {
+                textView.setBackgroundColor(Color.WHITE);
+            }
+            linearLayout.addView(textView);
+        }
+        textView.setText(Arrays.toString(arr));
+    }
+
+
 
 }
